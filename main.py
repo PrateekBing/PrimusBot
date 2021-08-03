@@ -22,7 +22,12 @@ def get_quote():
 guild_ids = [871955836396781598, 769060032582516746]
 @slash.slash(name="motivate", description="Shows a motivational quote", guild_ids = guild_ids)
 async def on_motivate_command(ctx):
+    await ctx.defer()
     await ctx.send(content=get_quote())
+
+@slash.slash(name="ping", description="Shows the ping", guild_ids = guild_ids)
+async def on_motivate_command(ctx):
+    await ctx.send(content=f'{round(client.latency*1000)}ms')
 
 @slash.slash(name="shutdown", description="Shuts down", guild_ids = guild_ids)
 async def on_motivate_command(ctx):
@@ -59,7 +64,8 @@ responses = ['It is certain.',
                )
              ], guild_ids = guild_ids)
 async def on_motivate_command(ctx, question: str):
-	await ctx.send(f'Question: {question}\nAnswer: {random.choice(responses)}')
+    await ctx.defer()
+    await ctx.send(f'Question: {question}\nAnswer: {random.choice(responses)}')
 
 @client.event
 async def on_ready():
