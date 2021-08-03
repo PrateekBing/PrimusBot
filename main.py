@@ -10,10 +10,8 @@ from discord_slash.model import SlashCommandPermissionType
 from discord.ext import commands
 from discord_slash.utils.manage_commands import create_option
 
-client = discord.Client()
-slash = SlashCommand(client, sync_commands=True)
-
 client = commands.Bot(command_prefix = '.')
+slash = SlashCommand(client, sync_commands=True)
 
 def get_quote():
     response = requests.get("https://zenquotes.io/api/random")
@@ -21,7 +19,7 @@ def get_quote():
     quote = json_data[0]['q']+ " -" + json_data[0]['a']
     return(quote)
 
-guild_ids = [849555538102583316, 769060032582516746]
+guild_ids = [871955836396781598, 769060032582516746]
 @slash.slash(name="motivate", description="Shows a motivational quote", guild_ids = guild_ids)
 async def on_motivate_command(ctx):
     await ctx.send(content=get_quote())
@@ -59,7 +57,7 @@ responses = ['It is certain.',
                  option_type=3,
                  required=True
                )
-             ]), guild_ids = guild_ids)
+             ], guild_ids = guild_ids)
 async def on_motivate_command(ctx, question: str):
 	await ctx.send(f'Question: {question}\nAnswer: {random.choice(responses)}')
 
