@@ -2,6 +2,7 @@ import discord
 import os
 import requests
 import json
+from sys import argv
 
 client = discord.Client()
 
@@ -27,5 +28,5 @@ async def on_message(message):
         quote = get_quote()
         await message.channel.send(quote)
 
-
-client.run('ODcxOTU4NDExNjE1NTM1MTY0.YQi4jQ.VDubIUwq188j74T9R7CkzwQKe48')
+token = os.environ.get('TOKEN')
+client.run(token)
