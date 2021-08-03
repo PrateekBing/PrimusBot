@@ -1,5 +1,6 @@
 import discord
 import os
+from discord.colour import Color
 import requests
 import json
 import random
@@ -87,6 +88,13 @@ async def ping(ctx):
 @client.command(aliases=['8ball'])
 async def _8ball(ctx, *, question):
     await ctx.send(f'Question: {question}\nAnswer: {random.choice(responses)}')
+
+@client.command(aliases=['user', 'info'])
+@commands.has_permissions(kick_members=True)
+async def whois(ctx, member: discord.Member):
+    embed = discord.Embed(title = member.name, description = member.mention)
+    embed.add_field(name="ID", value=member.id, inline=True)
+    await ctx.send(embed=embed)
 
 token = os.environ.get('TOKEN')
 client.run(token)
