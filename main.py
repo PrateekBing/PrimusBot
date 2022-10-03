@@ -103,4 +103,6 @@ async def whois(ctx, member: discord.Member):
     await ctx.send(embed=embed)
 
 token = os.environ.get('TOKEN')
-client.run(token)
+client.run(token) 
+#NO errors found good job
+#new functionality added 
